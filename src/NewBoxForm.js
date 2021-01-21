@@ -1,7 +1,10 @@
-import React, {useState} from "react";
-
+import React, { useState } from "react";
+/* props:
+      addbox (function) 
+    state: 
+      formData */
 function NewBoxForm(props) {
-  const initialState = { width: "", height: "", backgroundColor:"" };
+  const initialState = { width: "", height: "", backgroundColor: "" };
   const [formData, setFormData] = useState(initialState);
 
   function handleChange(evt) {
@@ -11,24 +14,23 @@ function NewBoxForm(props) {
       [name]: value,
     }));
   }
-
+// TODO: add doc string 
   function handleSubmit(evt) {
-    console.log("enter handle submit");
     evt.preventDefault();
-    console.log("formdata", formData);
     props.addBox(formData);
     setFormData(initialState);
   }
+  // add id attribute on inputs
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="height">Height</label>
-      <input name="height" onChange={handleChange} value={formData.height}/>
+      <input name="height" onChange={handleChange} value={formData.height} />
 
       <label htmlFor="width">Width</label>
-      <input name="width" onChange={handleChange} value={formData.width}/>
+      <input name="width" onChange={handleChange} value={formData.width} />
 
       <label htmlFor="backgroundColor"> Background Color</label>
-      <input name="backgroundColor"onChange={handleChange} value={formData.backgroundColor}/>
+      <input name="backgroundColor" onChange={handleChange} value={formData.backgroundColor} />
 
       <button>Add Box!</button>
     </form>

@@ -3,7 +3,8 @@ import { v4 as uuid } from 'uuid';
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
 
-
+/* state:
+  boxes: array of boxes */
 function BoxList() {
   const [boxes, setBoxes] = useState([]);
 
@@ -11,12 +12,11 @@ function BoxList() {
     setBoxes(boxes => boxes.filter(b => b.id !== id));
   }
 
-
   function addBox(box) {
     let newBox = { ...box, id: uuid() };
     setBoxes(boxes => [...boxes, newBox]);
   }
-
+  // function naming, boxesToRender
   let renderBoxes = boxes.map(b => {
     return (
       <Box width={b.width}
