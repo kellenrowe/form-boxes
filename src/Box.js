@@ -1,5 +1,4 @@
 import React from "react";
-import BoxList from "./BoxList";
 
 function Box(props) {
 

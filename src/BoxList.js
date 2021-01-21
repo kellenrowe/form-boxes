@@ -8,7 +8,13 @@ function BoxList() {
   const [boxes, setBoxes] = useState([]);
 
   function removeBox(id) {
-    setBoxes(boxes => {boxes.filter(b => b.id !== id)})
+    setBoxes(boxes => boxes.filter(b => b.id !== id));
+  }
+
+
+  function addBox(box) {
+    let newBox = { ...box, id: uuid() };
+    setBoxes(boxes => [...boxes, newBox]);
   }
 
   let renderBoxes = boxes.map(b => {
@@ -17,25 +23,20 @@ function BoxList() {
         height={b.height}
         backgroundColor={b.backgroundColor}
         removeBox={removeBox}
-        key={box.id}
-        id={box.id} />
+        key={b.id}
+        id={b.id} />
     )
   });
-
-  function addBox(box) {
-    let newBox = { ...box, id: uuid() };
-    setBoxes(boxes => [...boxes, newBox]);
-  }
-
+  console.log(renderBoxes);
 
   return (
     <div>
       <NewBoxForm addBox={addBox} />
-      {renderBoxes()}
+      {renderBoxes}
     </div>
   )
 
 
 }
 
-export default BoxList
+export default BoxList;
